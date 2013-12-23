@@ -1,0 +1,46 @@
+| <?xml version="1.0" encoding="utf-8" standalone="no"?>
+
+application(xmlns="http://ns.adobe.com/air/application/#{sdk_version}")
+	id= id
+	filename= filename
+	name= name
+	versionNumber= versionNumber
+
+	initialWindow
+		content [この値は Flash Builder の出力ファイル app.xml に上書きされます。]
+		visible true
+		each val, key in initialWindow
+			#{key}= val
+
+	supportedLanguages ja
+
+	icon
+		each val, key in icons
+			#{key}= val
+
+	if ios
+		iPhone
+			Entitlements
+				| <![CDATA[
+				| !{Entitlements}
+				| ]]>
+			InfoAdditions
+				| <![CDATA[
+				| !{InfoAdditions}
+				| ]]>
+			requestedDisplayResolution high
+
+	else
+		android
+			manifestAdditions
+				| <![CDATA[
+				| !{manifest}
+				| ]]>
+
+
+	extensions
+		each extensionID in extensions
+			extensionID= extensionID
+
+
+
